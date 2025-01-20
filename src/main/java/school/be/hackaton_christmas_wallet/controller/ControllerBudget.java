@@ -10,6 +10,8 @@ import school.be.hackaton_christmas_wallet.application.Budget.command.CreateBudg
 import school.be.hackaton_christmas_wallet.application.Budget.command.UpdateBudget.UpdateBudgetCommand;
 import school.be.hackaton_christmas_wallet.application.Budget.query.BudgetQueryProcessor;
 import school.be.hackaton_christmas_wallet.application.Budget.query.GetBudget.GetAllBudgetOutput;
+import school.be.hackaton_christmas_wallet.application.Budget.query.GetBudgetById.GetBudgetByIdHandler;
+import school.be.hackaton_christmas_wallet.application.Budget.query.GetBudgetById.GetBudgetByIdOutput;
 import school.be.hackaton_christmas_wallet.domains.exceptions.NotFoundException;
 
 @RestController
@@ -27,6 +29,11 @@ public class ControllerBudget {
     @GetMapping()
     public ResponseEntity<GetAllBudgetOutput> GetAllBudget() {
         return ResponseEntity.ok(budgetQueryProcessor.GetAllBudget());
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<GetBudgetByIdOutput> GetAllBudget(@PathVariable long id) {
+        return ResponseEntity.ok(budgetQueryProcessor.GetBudgetById(id));
     }
 
     @PostMapping
