@@ -42,3 +42,5 @@ create table purchases
 create index idx_purchase_user on purchases (userId);
 create index idx_purchase_category on purchases (categoryId);
 create index idx_purchase_date on purchases (purchaseDate);
+
+select * from budgets;
