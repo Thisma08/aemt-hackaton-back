@@ -1,3 +1,5 @@
+drop database christmas_wallet_db;
+
 create database christmas_wallet_db;
 
 use christmas_wallet_db;
@@ -15,21 +17,36 @@ create table users
 create table purchases
 (
     id bigint auto_increment primary key,
+    userId bigint not null,
     amount decimal(10,2) not null,
     purchaseDate datetime not null
 );
 
-create table roles
+create table months
 (
     id bigint auto_increment primary key,
-    name varchar(255) not null
+    month varchar(9) not null
 );
 
-create table users_roles
+insert into months(month)
+values
+('January'),
+('February'),
+('March'),
+('April'),
+('May'),
+('June'),
+('July'),
+('August'),
+('September'),
+('October'),
+('November'),
+('December');
+
+create table budgets
 (
-    userId bigint not null,
-    roleId bigint not null,
-    primary key (userId, roleId),
-    constraint FK_userId_id foreign key (userId) references users (id),
-    constraint FK_roleId_id foreign key (roleId) references roles (id)
+    id bigint auto_increment primary key,
+    budget decimal(10,2)not null,
+    monthId bigint not null,
+    constraint FK_monthId_id foreign key (id) references months (id)
 );
