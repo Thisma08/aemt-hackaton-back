@@ -22,11 +22,13 @@ create table purchases
 (
     id bigint auto_increment primary key,
     amount decimal(10,2) not null,
+    purchaseDate datetime not null,
     userId bigint not null,
     categoryId bigint not null,
-    purchaseDate datetime not null,
+    budgetId bigint not null,
     constraint FK_userId foreign key (userId) references users (id),
-    constraint FK_categoryId foreign key (categoryId) references categories (id)
+    constraint FK_categoryId foreign key (categoryId) references categories (id),
+    constraint FK_budgetId foreign key (budgetId) references budgets (id)
 );
 
 create table budgets
