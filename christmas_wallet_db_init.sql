@@ -1,4 +1,4 @@
-drop database christmas_wallet_db;
+-- drop database christmas_wallet_db;
 
 create database christmas_wallet_db;
 
