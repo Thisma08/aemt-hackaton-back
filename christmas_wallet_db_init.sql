@@ -33,7 +33,8 @@ create table budgets
 (
     id bigint auto_increment primary key,
     budget decimal(10,2)not null,
-    monthNumber bigint not null
+    month bigint not null,
+    year bigint not null
 );
 
 create index idx_purchase_user on purchases (userId);
