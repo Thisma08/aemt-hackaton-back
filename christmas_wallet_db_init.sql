@@ -18,6 +18,14 @@ create table categories
     name varchar(255) not null
 );
 
+create table budgets
+(
+    id bigint auto_increment primary key,
+    budget decimal(10,2)not null,
+    month bigint not null,
+    year bigint not null
+);
+
 create table purchases
 (
     id bigint auto_increment primary key,
@@ -31,15 +39,6 @@ create table purchases
     constraint FK_budgetId foreign key (budgetId) references budgets (id)
 );
 
-create table budgets
-(
-    id bigint auto_increment primary key,
-    budget decimal(10,2)not null,
-    month bigint not null,
-    year bigint not null
-);
-
 create index idx_purchase_user on purchases (userId);
 create index idx_purchase_category on purchases (categoryId);
 create index idx_purchase_date on purchases (purchaseDate);
-create index idx_budget_month on budgets (monthNumber);
