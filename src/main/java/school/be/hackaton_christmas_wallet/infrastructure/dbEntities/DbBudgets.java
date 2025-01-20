@@ -4,6 +4,9 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "budgets")
 @Data
@@ -16,4 +19,7 @@ public class DbBudgets {
     private float budget;
     private int month;
     private int year;
+
+    @OneToMany(mappedBy = "budget")
+    private List<DbPurchases> purchases= new ArrayList<>();
 }

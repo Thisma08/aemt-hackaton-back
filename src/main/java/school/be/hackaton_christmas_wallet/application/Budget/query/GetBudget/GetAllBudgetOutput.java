@@ -1,21 +1,23 @@
 package school.be.hackaton_christmas_wallet.application.Budget.query.GetBudget;
 
-import java.util.Date;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 public class GetAllBudgetOutput {
-    public List<MonthBudgetOutput> Budgets;
+    public List<MonthBudgetOutput> Budgets = new ArrayList<>();
 
-    public class MonthBudgetOutput {
-        public String month;
+    public static class MonthBudgetOutput {
+        public int month;
         public int year;
         public float budget;
-        public List<PurchassingOutput> Purchassings;
+        public List<PurchasedOutput> Purchased = new ArrayList<>();
+
         // Budget
-        public class PurchassingOutput {
-            public Date date;
+        public static class PurchasedOutput {
+            public LocalDateTime date;
             public float amount;
-            public float category;
+            public String category;
 
         }
     }

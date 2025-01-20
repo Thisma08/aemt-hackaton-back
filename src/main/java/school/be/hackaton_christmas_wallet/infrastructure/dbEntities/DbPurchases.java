@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 @Entity
@@ -17,18 +18,19 @@ public class DbPurchases {
 
     private float amount;
 
-    private LocalDateTime purchaseDate;
+    @Column(name = "purchasedate")
+    private Timestamp purchaseDate;
 
     @ManyToOne
-    @JoinColumn(name = "userId", referencedColumnName = "id")
+    @JoinColumn(name = "userid", referencedColumnName = "id")
     private DbUsers user;
 
     @ManyToOne
-    @JoinColumn(name = "categoryId", referencedColumnName = "id")
+    @JoinColumn(name = "categoryid", referencedColumnName = "id")
     private DbCategories category;
 
     @ManyToOne
-    @JoinColumn(name = "budgetId", referencedColumnName = "id")
+    @JoinColumn(name = "budgetid", referencedColumnName = "id")
     private DbBudgets budget;
 }
 
