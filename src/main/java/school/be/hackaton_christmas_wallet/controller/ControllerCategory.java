@@ -4,8 +4,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import school.be.hackaton_christmas_wallet.application.category.command.CategoryCommandProcessor;
 import school.be.hackaton_christmas_wallet.application.category.command.UpdateCategory.UpdateCategoryCommand;
-import school.be.hackaton_christmas_wallet.application.category.command.UpdateCategory.UpdateCategoryHandler;
 import school.be.hackaton_christmas_wallet.application.category.querry.CategoryQueryProcessor;
+import school.be.hackaton_christmas_wallet.application.category.querry.GetAllCategory.GetAllCategoryOutput;
+import school.be.hackaton_christmas_wallet.application.category.querry.GetByIdCategory.GetByIdCategoryOutput;
 
 @RestController
 @RequestMapping("/v1/category")
@@ -36,5 +37,18 @@ public class ControllerCategory {
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<GetByIdCategoryOutput> GetById(@PathVariable long id) {
+        GetByIdCategoryOutput byIdCategoryOutput = categoryQueryProcessor.getByIdCategoryOutput(id);
+        if (byIdCategoryOutput == null)
+            return ResponseEntity.notFound().build();
+        return ResponseEntity.ok(byIdCategoryOutput);
+    }
+
+    @GetMapping
+    public ResponseEntity<GetAllCategoryOutput> GetAll() {
+        return ResponseEntity.ok(categoryQueryProcessor.getGetAllCategoryHandler());
     }
 }

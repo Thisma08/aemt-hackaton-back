@@ -21,7 +21,8 @@ public class CategoryCommandProcessor {
     public String Create(String command) throws Exception {
         return createCategoryHandler.handle(command);
     }
-    public String Update(UpdateCategoryCommand command) throws Exception{
+
+    public String Update(UpdateCategoryCommand command) throws Exception {
         return updateCategoryHandler.handle(command);
     }
 }

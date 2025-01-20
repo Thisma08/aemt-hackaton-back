@@ -1,5 +1,5 @@
 package school.be.hackaton_christmas_wallet.application.utils;
 
-public interface IEmptyQueryHandler<O> {
-    O handle();
+public interface IQueryHandler<I, O> {
+    O handle(I input);
 }
