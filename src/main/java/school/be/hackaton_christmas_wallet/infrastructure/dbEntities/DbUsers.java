@@ -6,19 +6,25 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
+import jakarta.persistence.*;
+import lombok.*;
+
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "users")
 @Data
 @NoArgsConstructor
+@ToString(exclude = "purchases")
 public class DbUsers {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
 
     private String username;
     private String password;
 
-    @OneToMany(mappedBy = "user")
-    private List<DbPurchases> purchases;
-
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    private List<DbPurchases> purchases = new ArrayList<>();
 }

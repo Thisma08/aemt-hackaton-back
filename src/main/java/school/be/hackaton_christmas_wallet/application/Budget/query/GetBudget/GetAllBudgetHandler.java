@@ -30,14 +30,13 @@ public class GetAllBudgetHandler implements IEmptyQueryHandler<GetAllBudgetOutpu
             monthBudgetOutput.budget = dbBudget.getBudget();
             monthBudgetOutput.month = dbBudget.getMonth();
             monthBudgetOutput.year = dbBudget.getYear();
-            System.out.println(dbBudget.getPurchases());
-//           dbBudget.getPurchases().forEach(purchase -> {
-//                GetAllBudgetOutput.MonthBudgetOutput.PurchasedOutput tmp = new GetAllBudgetOutput.MonthBudgetOutput.PurchasedOutput();
-//                tmp.amount = purchase.getAmount();
-//                tmp.date = purchase.getPurchaseDate();
-//                tmp.category = purchase.getCategory().getName();
-//                monthBudgetOutput.Purchased.add(tmp);
-//            });
+           dbBudget.getPurchases().forEach(purchase -> {
+                GetAllBudgetOutput.MonthBudgetOutput.PurchasedOutput tmp = new GetAllBudgetOutput.MonthBudgetOutput.PurchasedOutput();
+                tmp.amount = purchase.getAmount();
+                tmp.date = purchase.getPurchaseDate();
+                tmp.category = purchase.getCategory().getName();
+                monthBudgetOutput.Purchased.add(tmp);
+            });
 
             output.Budgets.add(monthBudgetOutput);
         });

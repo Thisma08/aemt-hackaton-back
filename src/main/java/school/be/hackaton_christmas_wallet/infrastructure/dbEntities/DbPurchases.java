@@ -7,19 +7,26 @@ import lombok.NoArgsConstructor;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
+import jakarta.persistence.*;
+import lombok.*;
+
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+
 @Entity
 @Table(name = "purchases")
 @Data
 @NoArgsConstructor
+@ToString(exclude = {"user", "category", "budget"})
 public class DbPurchases {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
 
     private float amount;
 
     @Column(name = "purchasedate")
-    private Timestamp purchaseDate;
+    private LocalDateTime purchaseDate;
 
     @ManyToOne
     @JoinColumn(name = "userid", referencedColumnName = "id")
@@ -33,4 +40,5 @@ public class DbPurchases {
     @JoinColumn(name = "budgetid", referencedColumnName = "id")
     private DbBudgets budget;
 }
+
 
