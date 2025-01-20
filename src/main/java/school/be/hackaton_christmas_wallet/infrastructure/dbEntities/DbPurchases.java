@@ -16,8 +16,15 @@ public class DbPurchases {
     private Long id;
 
     private float amount;
-    private int userId;
-    private int categoryId;
-    private LocalDateTime purchaseDate;
 
+    @ManyToOne
+    @JoinColumn(name = "userId", referencedColumnName = "id")
+    private DbUsers user;
+
+    @ManyToOne
+    @JoinColumn(name = "categoryId", referencedColumnName = "id")
+    private DbCategories category;
+
+    private LocalDateTime purchaseDate;
 }
+
