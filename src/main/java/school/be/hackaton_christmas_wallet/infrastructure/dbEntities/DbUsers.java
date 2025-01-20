@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Entity
 @Table(name = "users")
 @Data
@@ -15,5 +17,8 @@ public class DbUsers {
 
     private String username;
     private String password;
+
+    @OneToMany(mappedBy = "user")
+    private List<DbPurchases> purchases;
 
 }
