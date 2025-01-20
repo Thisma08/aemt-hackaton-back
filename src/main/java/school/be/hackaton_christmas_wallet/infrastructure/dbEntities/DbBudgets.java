@@ -12,7 +12,6 @@ public class DbBudgets {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private float budget;
     private int month;
     private int year;

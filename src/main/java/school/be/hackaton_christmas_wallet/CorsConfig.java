@@ -12,7 +12,7 @@ import java.util.Collections;
 import static java.util.Arrays.asList;
 
 @Configuration
-public class CoresConfig implements WebMvcConfigurer {
+public class CorsConfig implements WebMvcConfigurer {
     @Bean
     public CorsFilter corsFilter() {
         final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
