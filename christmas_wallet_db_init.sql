@@ -14,12 +14,21 @@ create table users
     constraint UK_username unique (username)
 );
 
+create table categories
+(
+    id bigint auto_increment primary key,
+    name varchar(255) not null
+);
+
 create table purchases
 (
     id bigint auto_increment primary key,
-    userId bigint not null,
     amount decimal(10,2) not null,
-    purchaseDate datetime not null
+    userId bigint not null,
+    categoryId bigint not null,
+    purchaseDate datetime not null,
+    constraint FK_userId_id foreign key (id) references users (id),
+    constraint FK_categoryId_id foreign key (id) references categories (id)
 );
 
 create table months
