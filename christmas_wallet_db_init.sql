@@ -1,4 +1,4 @@
--- drop database christmas_wallet_db;
+drop database christmas_wallet_db;
 
 create database christmas_wallet_db;
 
@@ -15,7 +15,8 @@ create table users
 create table categories
 (
     id bigint auto_increment primary key,
-    name varchar(255) not null
+    name varchar(255) not null,
+    constraint UK_name unique (name)
 );
 
 create table budgets
