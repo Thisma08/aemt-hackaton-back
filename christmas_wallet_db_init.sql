@@ -31,31 +31,9 @@ create table purchases
     constraint FK_categoryId_id foreign key (id) references categories (id)
 );
 
-create table months
-(
-    id bigint auto_increment primary key,
-    month varchar(9) not null
-);
-
-insert into months(month)
-values
-('January'),
-('February'),
-('March'),
-('April'),
-('May'),
-('June'),
-('July'),
-('August'),
-('September'),
-('October'),
-('November'),
-('December');
-
 create table budgets
 (
     id bigint auto_increment primary key,
     budget decimal(10,2)not null,
-    monthId bigint not null,
-    constraint FK_monthId_id foreign key (id) references months (id)
+    monthNumber bigint not null
 );
