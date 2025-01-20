@@ -4,19 +4,20 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import school.be.hackaton_christmas_wallet.application.Budget.BudgetQueryProcessor;
 import school.be.hackaton_christmas_wallet.application.Budget.command.BudgetCommandProcessor;
 import school.be.hackaton_christmas_wallet.application.Budget.command.CreateBudget.CreateBudgetCommand;
 import school.be.hackaton_christmas_wallet.application.Budget.command.CreateBudget.CreateBudgetOutput;
 import school.be.hackaton_christmas_wallet.application.Budget.command.UpdateBudget.UpdateBudgetCommand;
+import school.be.hackaton_christmas_wallet.application.Budget.query.BudgetQueryProcessor;
 import school.be.hackaton_christmas_wallet.application.Budget.query.GetBudget.GetAllBudgetOutput;
-import school.be.hackaton_christmas_wallet.domains.exceptions.BudgetNotFoundException;
+import school.be.hackaton_christmas_wallet.domains.exceptions.NotFoundException;
 
 @RestController
 @RequestMapping("/v1/Budget")
 public class ControllerBudget {
     private final BudgetCommandProcessor budgetCommandProcessor;
     private final BudgetQueryProcessor budgetQueryProcessor;
+
     public ControllerBudget(BudgetCommandProcessor budgetCommandProcessor,BudgetQueryProcessor budgetQueryProcessor) {
         this.budgetCommandProcessor = budgetCommandProcessor;
         this.budgetQueryProcessor = budgetQueryProcessor;
@@ -45,7 +46,7 @@ public class ControllerBudget {
             command.year = year;
             budgetCommandProcessor.update(command);
             return ResponseEntity.noContent().build();
-        } catch (BudgetNotFoundException e) {
+        } catch (NotFoundException e) {
             return ResponseEntity.notFound().build();
         }
     }

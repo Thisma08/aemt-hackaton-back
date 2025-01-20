@@ -1,5 +1,6 @@
 package school.be.hackaton_christmas_wallet.application.Budget.command;
 
+import lombok.SneakyThrows;
 import org.springframework.stereotype.Service;
 import school.be.hackaton_christmas_wallet.application.Budget.command.CreateBudget.CreateBudgetCommand;
 import school.be.hackaton_christmas_wallet.application.Budget.command.CreateBudget.CreateBudgetOutput;
@@ -17,6 +18,7 @@ public class BudgetCommandProcessor {
         this.updateBudgetHandler = updateBudgetHandler;
     }
 
+    @SneakyThrows // TODO : To delete
     public CreateBudgetOutput create(CreateBudgetCommand command) {
         return createBudgetHandler.handle(command);
     }

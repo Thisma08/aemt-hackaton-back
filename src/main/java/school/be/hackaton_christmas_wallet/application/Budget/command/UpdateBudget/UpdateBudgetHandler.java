@@ -3,8 +3,7 @@ package school.be.hackaton_christmas_wallet.application.Budget.command.UpdateBud
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import school.be.hackaton_christmas_wallet.application.utils.IEmptyOutputCommandHandler;
-import school.be.hackaton_christmas_wallet.domains.MonthBudget;
-import school.be.hackaton_christmas_wallet.domains.exceptions.BudgetNotFoundException;
+import school.be.hackaton_christmas_wallet.domains.exceptions.NotFoundException;
 import school.be.hackaton_christmas_wallet.infrastructure.dbEntities.DbBudgets;
 import school.be.hackaton_christmas_wallet.infrastructure.repositories.IBudgetsRepository;
 
@@ -21,7 +20,7 @@ public class UpdateBudgetHandler implements IEmptyOutputCommandHandler<UpdateBud
     @Override
     public void handle(UpdateBudgetCommand input) {
         DbBudgets existingBudget = budgetsRepository.findByMonthAndYear(input.month, input.year)
-                .orElseThrow(() -> new BudgetNotFoundException(input.month, input.year));
+                .orElseThrow(() -> new NotFoundException(input.month, input.year));
 
         existingBudget.setBudget(input.budget);
 

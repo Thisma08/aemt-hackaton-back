@@ -1,22 +1,17 @@
 package school.be.hackaton_christmas_wallet.application.Budget.query.GetBudget;
 
-import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import school.be.hackaton_christmas_wallet.application.utils.IEmptyQueryHandler;
 import school.be.hackaton_christmas_wallet.infrastructure.dbEntities.DbBudgets;
 import school.be.hackaton_christmas_wallet.infrastructure.repositories.IBudgetsRepository;
 
-import java.io.Console;
 import java.util.List;
-import java.util.logging.Logger;
 
 @Service
 public class GetAllBudgetHandler implements IEmptyQueryHandler<GetAllBudgetOutput> {
-    private ModelMapper modelMapper;
-    private IBudgetsRepository budgetsRepository;
+    private final IBudgetsRepository budgetsRepository;
 
-    public GetAllBudgetHandler(ModelMapper modelMapper, IBudgetsRepository budgetsRepository) {
-        this.modelMapper = modelMapper;
+    public GetAllBudgetHandler(IBudgetsRepository budgetsRepository) {
         this.budgetsRepository = budgetsRepository;
     }
 
