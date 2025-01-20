@@ -16,6 +16,4 @@ public class Purchase {
         this.amount = amount;
         this.category = category;
     }
-
-
 }

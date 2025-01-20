@@ -18,7 +18,6 @@ public class GetAllBudgetOutput {
             public LocalDateTime date;
             public float amount;
             public String category;
-
         }
     }
 }

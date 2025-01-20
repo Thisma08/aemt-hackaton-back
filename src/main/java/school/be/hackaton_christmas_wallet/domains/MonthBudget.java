@@ -2,13 +2,17 @@ package school.be.hackaton_christmas_wallet.domains;
 
 import lombok.Data;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+@NoArgsConstructor
 public class MonthBudget {
     @Getter
+    @Setter
     private float budget;
     @Getter
     private String month;
