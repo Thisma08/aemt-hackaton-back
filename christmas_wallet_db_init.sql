@@ -35,5 +35,6 @@ create table budgets
 (
     id bigint auto_increment primary key,
     budget decimal(10,2)not null,
-    monthNumber bigint not null
+    monthValue bigint not null,
+    yearValue bigint not null,
 );
