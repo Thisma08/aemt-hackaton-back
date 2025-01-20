@@ -8,9 +8,7 @@ create table users
 (
     id bigint auto_increment primary key,
     username varchar(255) not null,
-    email varchar(255) not null,
     password varchar(255) not null,
-    constraint UK_email unique (email),
     constraint UK_username unique (username)
 );
 
@@ -27,14 +25,18 @@ create table purchases
     userId bigint not null,
     categoryId bigint not null,
     purchaseDate datetime not null,
-    constraint FK_userId_id foreign key (id) references users (id),
-    constraint FK_categoryId_id foreign key (id) references categories (id)
+    constraint FK_userId foreign key (userId) references users (id),
+    constraint FK_categoryId foreign key (categoryId) references categories (id)
 );
 
 create table budgets
 (
     id bigint auto_increment primary key,
     budget decimal(10,2)not null,
-    monthValue bigint not null,
-    yearValue bigint not null,
+    monthNumber bigint not null
 );
+
+create index idx_purchase_user on purchases (userId);
+create index idx_purchase_category on purchases (categoryId);
+create index idx_purchase_date on purchases (purchaseDate);
+create index idx_budget_month on budgets (monthNumber);
