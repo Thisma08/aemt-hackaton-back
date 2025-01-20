@@ -14,5 +14,6 @@ public class DbBudgets {
     private Long id;
 
     private float budget;
-    private int monthNumber;
+    private int month;
+    private int year;
 }

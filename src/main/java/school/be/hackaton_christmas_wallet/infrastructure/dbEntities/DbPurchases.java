@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Table(name = "purchases")
 @Data
@@ -16,9 +18,6 @@ public class DbPurchases {
     private float amount;
     private int userId;
     private int categoryId;
+    private LocalDateTime purchaseDate;
 
-//    amount decimal(10,2) not null,
-//    userId bigint not null,
-//    categoryId bigint not null,
-//    purchaseDate datetime not null,
 }
