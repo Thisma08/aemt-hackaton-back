@@ -7,7 +7,7 @@ import school.be.hackaton_christmas_wallet.infrastructure.dbEntities.DbCategorie
 import school.be.hackaton_christmas_wallet.infrastructure.repositories.ICategoriesRepository;
 
 @Service
-public class UpdateCategoryHandler implements ICommandHandler<UpdateCategoryCommand, String> {
+public class UpdateCategoryHandler implements ICommandHandler<UpdateCategoryCommand, UpdateCategoryOutput> {
 
     private final ICategoriesRepository categoryRepository;
 
@@ -16,10 +16,16 @@ public class UpdateCategoryHandler implements ICommandHandler<UpdateCategoryComm
     }
 
     @Override
-    public String handle(UpdateCategoryCommand input) throws Exception {
+    public UpdateCategoryOutput handle(UpdateCategoryCommand input) throws Exception {
         DbCategories db = categoryRepository.findById(input.id)
                 .orElseThrow(() -> new NotFoundException("Categories", input.id));
         db.setName(input.name);
-        return categoryRepository.save(db).getName();
+        db = categoryRepository.save(db);
+
+        UpdateCategoryOutput updateCategoryOutput = new UpdateCategoryOutput();
+        updateCategoryOutput.name = db.getName();
+        updateCategoryOutput.id = db.getId();
+
+        return updateCategoryOutput;
     }
 }

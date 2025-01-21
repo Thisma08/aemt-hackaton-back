@@ -23,8 +23,10 @@ public class GetByIdCategoryHandler implements IQueryHandler<Long, GetByIdCatego
 
         if (byId.isEmpty())
             return null;
-        else
+        else{
             getByIdCategoryOutput.name = byId.get().getName();
+            getByIdCategoryOutput.id = byId.get().getId();
+        }
 
         return getByIdCategoryOutput;
     }

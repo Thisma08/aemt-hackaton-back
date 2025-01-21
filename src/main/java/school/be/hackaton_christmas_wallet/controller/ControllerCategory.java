@@ -4,6 +4,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import school.be.hackaton_christmas_wallet.application.category.command.CategoryCommandProcessor;
 import school.be.hackaton_christmas_wallet.application.category.command.UpdateCategory.UpdateCategoryCommand;
+import school.be.hackaton_christmas_wallet.application.category.command.UpdateCategory.UpdateCategoryOutput;
 import school.be.hackaton_christmas_wallet.application.category.querry.CategoryQueryProcessor;
 import school.be.hackaton_christmas_wallet.application.category.querry.GetAllCategory.GetAllCategoryOutput;
 import school.be.hackaton_christmas_wallet.application.category.querry.GetByIdCategory.GetByIdCategoryOutput;
@@ -30,12 +31,12 @@ public class ControllerCategory {
     }
 
     @PutMapping
-    public ResponseEntity<String> Update(@RequestBody UpdateCategoryCommand command) {
+    public ResponseEntity<UpdateCategoryOutput> Update(@RequestBody UpdateCategoryCommand command) {
         try {
-            String created = categoryCommandProcessor.Update(command);
+            UpdateCategoryOutput created = categoryCommandProcessor.Update(command);
             return ResponseEntity.ok(created);
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
+            return ResponseEntity.badRequest().body(null);
         }
     }
 

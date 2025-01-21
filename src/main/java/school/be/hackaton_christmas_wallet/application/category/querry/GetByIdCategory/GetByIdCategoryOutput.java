@@ -2,4 +2,5 @@ package school.be.hackaton_christmas_wallet.application.category.querry.GetByIdC
 
 public class GetByIdCategoryOutput {
     public String name;
+    public float id;
 }
