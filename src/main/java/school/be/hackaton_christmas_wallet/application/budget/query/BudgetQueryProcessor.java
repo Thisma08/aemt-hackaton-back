@@ -13,7 +13,7 @@ import school.be.hackaton_christmas_wallet.application.utils.IQueryHandler;
 @Service
 public class BudgetQueryProcessor {
     private final IEmptyQueryHandler<GetAllBudgetOutput> getAllBudgetHandler;
-    private final GetBudgetByIdHandler getBudgetByIdHandler;
+    private final IQueryHandler<Long, GetBudgetByIdOutput> getBudgetByIdHandler;
     private final IQueryHandler<Long, BalanceRemainingOutput> balanceRemainingHandler;
     private final IQueryHandler<BalanceRemainingByCategoryQuery, BalanceRemainingByCategoryOutput> balanceRemainingByCategoryHandler;
 

@@ -3,7 +3,6 @@ package school.be.hackaton_christmas_wallet.domains;
 import lombok.Getter;
 
 import java.util.Date;
-import java.util.List;
 
 @Getter
 public class Purchase {

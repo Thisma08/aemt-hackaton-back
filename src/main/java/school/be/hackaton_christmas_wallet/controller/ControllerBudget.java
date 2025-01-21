@@ -22,12 +22,10 @@ import school.be.hackaton_christmas_wallet.domains.exceptions.NotFoundException;
 public class ControllerBudget {
     private final BudgetCommandProcessor budgetCommandProcessor;
     private final BudgetQueryProcessor budgetQueryProcessor;
-    private final BalanceRemainingByCategoryHandler balanceRemainingByCategoryHandler;
 
     public ControllerBudget(BudgetCommandProcessor budgetCommandProcessor, BudgetQueryProcessor budgetQueryProcessor, BalanceRemainingByCategoryHandler balanceRemainingByCategoryHandler) {
         this.budgetCommandProcessor = budgetCommandProcessor;
         this.budgetQueryProcessor = budgetQueryProcessor;
-        this.balanceRemainingByCategoryHandler = balanceRemainingByCategoryHandler;
     }
 
 

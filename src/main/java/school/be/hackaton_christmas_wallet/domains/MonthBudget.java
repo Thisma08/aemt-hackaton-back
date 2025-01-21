@@ -1,9 +1,7 @@
 package school.be.hackaton_christmas_wallet.domains;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -12,7 +10,6 @@ import java.util.List;
 @NoArgsConstructor
 public class MonthBudget {
     @Getter
-    @Setter
     private float budget;
     @Getter
     private String month;
@@ -137,5 +134,11 @@ public class MonthBudget {
             output -= purchase.getAmount();
         }
         return output;
+    }
+
+    public void setBudget(float budget) {
+        if (budget < 99)
+            throw new IllegalArgumentException("budget too low");
+        this.budget = budget;
     }
 }

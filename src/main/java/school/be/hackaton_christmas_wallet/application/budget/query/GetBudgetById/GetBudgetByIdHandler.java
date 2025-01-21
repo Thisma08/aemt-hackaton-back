@@ -1,25 +1,22 @@
 package school.be.hackaton_christmas_wallet.application.budget.query.GetBudgetById;
 
-import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+import school.be.hackaton_christmas_wallet.application.utils.IQueryHandler;
 import school.be.hackaton_christmas_wallet.infrastructure.dbEntities.DbBudgets;
 import school.be.hackaton_christmas_wallet.infrastructure.repositories.IBudgetsRepository;
 
 import java.util.stream.Collectors;
 
-import static school.be.hackaton_christmas_wallet.application.budget.query.GetBudgetById.GetBudgetByIdOutput.*;
-
 @Service
-public class GetBudgetByIdHandler {
-    private final ModelMapper modelMapper;
+public class GetBudgetByIdHandler implements IQueryHandler<Long, GetBudgetByIdOutput> {
     private final IBudgetsRepository budgetsRepository;
 
-    public GetBudgetByIdHandler(IBudgetsRepository budgetsRepository, ModelMapper modelMapper) {
+    public GetBudgetByIdHandler(IBudgetsRepository budgetsRepository) {
         this.budgetsRepository = budgetsRepository;
-        this.modelMapper = modelMapper;
     }
 
-    public GetBudgetByIdOutput handle(long id) {
+    @Override
+    public GetBudgetByIdOutput handle(Long id) {
         DbBudgets dbBudgets = budgetsRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("budget not found for ID: " + id));
 
@@ -31,7 +28,7 @@ public class GetBudgetByIdHandler {
 
         output.Purchased = dbBudgets.getPurchases().stream()
                 .map(purchase -> {
-                    PurchasedOutput purchasedOutput = new PurchasedOutput();
+                    GetBudgetByIdOutput.PurchasedOutput purchasedOutput = new GetBudgetByIdOutput.PurchasedOutput();
                     purchasedOutput.id = purchase.getId();
                     purchasedOutput.date = purchase.getPurchaseDate();
                     purchasedOutput.amount = purchase.getAmount();
@@ -42,3 +39,4 @@ public class GetBudgetByIdHandler {
         return output;
     }
 }
+
