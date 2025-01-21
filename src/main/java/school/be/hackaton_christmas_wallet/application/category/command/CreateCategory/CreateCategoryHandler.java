@@ -6,7 +6,7 @@ import school.be.hackaton_christmas_wallet.infrastructure.dbEntities.DbCategorie
 import school.be.hackaton_christmas_wallet.infrastructure.repositories.ICategoriesRepository;
 
 @Service
-public class CreateCategoryHandler implements ICommandHandler<String, CreateCategoryOutput> {
+public class CreateCategoryHandler implements ICommandHandler<CreateCategoryCommand, CreateCategoryOutput> {
 
     private final ICategoriesRepository categoryRepository;
 
@@ -15,9 +15,9 @@ public class CreateCategoryHandler implements ICommandHandler<String, CreateCate
     }
 
     @Override
-    public CreateCategoryOutput handle(String input) {
+    public CreateCategoryOutput handle(CreateCategoryCommand input) {
         DbCategories dbCategories = new DbCategories();
-        dbCategories.setName(input);
+        dbCategories.setName(input.name);
 
         DbCategories savedCategory = categoryRepository.save(dbCategories);
 

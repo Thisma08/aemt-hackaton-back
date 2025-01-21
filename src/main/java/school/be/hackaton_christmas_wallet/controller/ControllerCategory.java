@@ -3,6 +3,7 @@ package school.be.hackaton_christmas_wallet.controller;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import school.be.hackaton_christmas_wallet.application.category.command.CategoryCommandProcessor;
+import school.be.hackaton_christmas_wallet.application.category.command.CreateCategory.CreateCategoryCommand;
 import school.be.hackaton_christmas_wallet.application.category.command.CreateCategory.CreateCategoryOutput;
 import school.be.hackaton_christmas_wallet.application.category.command.UpdateCategory.UpdateCategoryCommand;
 import school.be.hackaton_christmas_wallet.application.category.command.UpdateCategory.UpdateCategoryOutput;
@@ -22,7 +23,7 @@ public class ControllerCategory {
     }
 
     @PostMapping
-    public ResponseEntity<CreateCategoryOutput> Create(@RequestBody String command) {
+    public ResponseEntity<CreateCategoryOutput> Create(@RequestBody CreateCategoryCommand command) {
         try {
             return ResponseEntity.ok(categoryCommandProcessor.Create(command));
         } catch (Exception e) {
