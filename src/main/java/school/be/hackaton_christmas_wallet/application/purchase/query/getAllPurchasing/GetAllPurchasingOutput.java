@@ -1,4 +1,4 @@
-package school.be.hackaton_christmas_wallet.application.purchase.command.getAllPurchasing;
+package school.be.hackaton_christmas_wallet.application.purchase.query.getAllPurchasing;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;

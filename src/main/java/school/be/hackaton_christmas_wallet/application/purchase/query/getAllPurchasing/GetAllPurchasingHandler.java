@@ -1,4 +1,4 @@
-package school.be.hackaton_christmas_wallet.application.purchase.command.getAllPurchasing;
+package school.be.hackaton_christmas_wallet.application.purchase.query.getAllPurchasing;
 
 import org.springframework.stereotype.Service;
 import school.be.hackaton_christmas_wallet.application.utils.IEmptyQueryHandler;

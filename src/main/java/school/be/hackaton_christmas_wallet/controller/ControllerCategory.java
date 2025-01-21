@@ -24,7 +24,7 @@ public class ControllerCategory {
     @PostMapping
     public ResponseEntity<CreateCategoryOutput> Create(@RequestBody String command) {
         try {
-            return ResponseEntity.ok(categoryCommandProcessor.Create(command.substring(1, command.length() - 1)));
+            return ResponseEntity.ok(categoryCommandProcessor.Create(command));
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(null);
         }

@@ -1,4 +1,4 @@
-package school.be.hackaton_christmas_wallet.application.purchase.query.createPurchasing;
+package school.be.hackaton_christmas_wallet.application.purchase.command.updatePurchasing;
 
 import org.springframework.stereotype.Service;
 import school.be.hackaton_christmas_wallet.application.utils.IQueryHandler;
@@ -6,22 +6,21 @@ import school.be.hackaton_christmas_wallet.domains.exceptions.NotFoundException;
 import school.be.hackaton_christmas_wallet.infrastructure.dbEntities.DbBudgets;
 import school.be.hackaton_christmas_wallet.infrastructure.dbEntities.DbCategories;
 import school.be.hackaton_christmas_wallet.infrastructure.dbEntities.DbPurchases;
-import school.be.hackaton_christmas_wallet.infrastructure.dbEntities.DbUsers;
 import school.be.hackaton_christmas_wallet.infrastructure.repositories.IBudgetsRepository;
 import school.be.hackaton_christmas_wallet.infrastructure.repositories.ICategoriesRepository;
-import school.be.hackaton_christmas_wallet.infrastructure.repositories.IUsersRepository;
 import school.be.hackaton_christmas_wallet.infrastructure.repositories.IPurchasesRepository;
+import school.be.hackaton_christmas_wallet.infrastructure.repositories.IUsersRepository;
 
 import java.util.Optional;
 
 @Service
-public class CreatePurchasingHandler implements IQueryHandler<CreatePurchasingQuery, CreatePurchasingOutput> {
+public class UpdatePurchasingHandler implements IQueryHandler<UpdatePurchasingQuery, UpdatePurchasingOutput> {
     private final IPurchasesRepository purchasesRepository;
     private final IBudgetsRepository budgetsRepository;
     private final ICategoriesRepository categoriesRepository;
     private final IUsersRepository usersRepository;
 
-    public CreatePurchasingHandler(IPurchasesRepository purchasesRepository, IBudgetsRepository budgetsRepository, ICategoriesRepository categoriesRepository, IUsersRepository dbUsersRepository) {
+    public UpdatePurchasingHandler(IPurchasesRepository purchasesRepository, IBudgetsRepository budgetsRepository, ICategoriesRepository categoriesRepository, IUsersRepository dbUsersRepository) {
         this.purchasesRepository = purchasesRepository;
         this.budgetsRepository = budgetsRepository;
         this.categoriesRepository = categoriesRepository;
@@ -29,20 +28,16 @@ public class CreatePurchasingHandler implements IQueryHandler<CreatePurchasingQu
     }
 
     @Override
-    public CreatePurchasingOutput handle(CreatePurchasingQuery input) {
+    public UpdatePurchasingOutput handle(UpdatePurchasingQuery input) {
 
-        // TODO : changer utilisateur
-        long UserId = 1L;
 
-        DbPurchases db = new DbPurchases();
-        db.setUser(usersRepository.findById(1L).get());
+        Optional<DbPurchases> dbPurchases = purchasesRepository.findById(input.id);
+        if (dbPurchases.isEmpty())
+            throw new NotFoundException("Budget", input.budgetId);
+        DbPurchases db = dbPurchases.get();
+
         db.setAmount(input.amount);
         db.setPurchaseDate(input.purchaseDate);
-
-        Optional<DbUsers> dbUsers = usersRepository.findById(UserId);
-        if (dbUsers.isEmpty())
-            throw new NotFoundException("User", UserId);
-        db.setUser(dbUsers.get());
 
         Optional<DbBudgets> dbBudgets = budgetsRepository.findById(input.budgetId);
         if (dbBudgets.isEmpty())
@@ -56,17 +51,17 @@ public class CreatePurchasingHandler implements IQueryHandler<CreatePurchasingQu
 
         db = purchasesRepository.save(db);
 
-        CreatePurchasingOutput createPurchasingOutput = new CreatePurchasingOutput();
-        createPurchasingOutput.id = db.getId();
-        createPurchasingOutput.category = db.getCategory().getName();
-        createPurchasingOutput.budget = new CreatePurchasingOutput.BudgetOutput();
-        createPurchasingOutput.budget.id = db.getBudget().getId();
-        createPurchasingOutput.budget.month = db.getBudget().getMonth();
-        createPurchasingOutput.budget.year = db.getBudget().getYear();
-        createPurchasingOutput.budget.budget = db.getBudget().getBudget();
+        UpdatePurchasingOutput updatePurchasingOutput = new UpdatePurchasingOutput();
+        updatePurchasingOutput.id = db.getId();
+        updatePurchasingOutput.category = db.getCategory().getName();
+        updatePurchasingOutput.budget = new UpdatePurchasingOutput.BudgetOutput();
+        updatePurchasingOutput.budget.id = db.getBudget().getId();
+        updatePurchasingOutput.budget.month = db.getBudget().getMonth();
+        updatePurchasingOutput.budget.year = db.getBudget().getYear();
+        updatePurchasingOutput.budget.budget = db.getBudget().getBudget();
 
-        createPurchasingOutput.amount = db.getAmount();
-        createPurchasingOutput.purchaseDate = db.getPurchaseDate();
-        return createPurchasingOutput;
+        updatePurchasingOutput.amount = db.getAmount();
+        updatePurchasingOutput.purchaseDate = db.getPurchaseDate();
+        return updatePurchasingOutput;
     }
 }

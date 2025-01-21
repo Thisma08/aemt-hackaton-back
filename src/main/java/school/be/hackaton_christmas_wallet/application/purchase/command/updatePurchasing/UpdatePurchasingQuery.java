@@ -1,4 +1,4 @@
-package school.be.hackaton_christmas_wallet.application.purchase.query.updatePurchasing;
+package school.be.hackaton_christmas_wallet.application.purchase.command.updatePurchasing;
 
 import java.time.LocalDateTime;
 
