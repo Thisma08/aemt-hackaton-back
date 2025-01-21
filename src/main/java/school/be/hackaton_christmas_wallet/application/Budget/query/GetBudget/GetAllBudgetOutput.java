@@ -8,6 +8,7 @@ public class GetAllBudgetOutput {
     public List<MonthBudgetOutput> Budgets = new ArrayList<>();
 
     public static class MonthBudgetOutput {
+        public long id;
         public int month;
         public int year;
         public float budget;
@@ -15,6 +16,7 @@ public class GetAllBudgetOutput {
 
         // Budget
         public static class PurchasedOutput {
+            public long id;
             public LocalDateTime date;
             public float amount;
             public String category;

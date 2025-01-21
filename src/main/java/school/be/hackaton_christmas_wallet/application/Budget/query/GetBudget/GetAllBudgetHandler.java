@@ -1,14 +1,11 @@
 package school.be.hackaton_christmas_wallet.application.Budget.query.GetBudget;
 
-import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import school.be.hackaton_christmas_wallet.application.utils.IEmptyQueryHandler;
 import school.be.hackaton_christmas_wallet.infrastructure.dbEntities.DbBudgets;
 import school.be.hackaton_christmas_wallet.infrastructure.repositories.IBudgetsRepository;
 
-import java.io.Console;
 import java.util.List;
-import java.util.logging.Logger;
 
 @Service
 public class GetAllBudgetHandler implements IEmptyQueryHandler<GetAllBudgetOutput> {
@@ -25,11 +22,13 @@ public class GetAllBudgetHandler implements IEmptyQueryHandler<GetAllBudgetOutpu
         dbBudgets.forEach(dbBudget -> {
             GetAllBudgetOutput.MonthBudgetOutput monthBudgetOutput = new GetAllBudgetOutput.MonthBudgetOutput();
 
+            monthBudgetOutput.id = dbBudget.getId();
             monthBudgetOutput.budget = dbBudget.getBudget();
             monthBudgetOutput.month = dbBudget.getMonth();
             monthBudgetOutput.year = dbBudget.getYear();
            dbBudget.getPurchases().forEach(purchase -> {
                 GetAllBudgetOutput.MonthBudgetOutput.PurchasedOutput tmp = new GetAllBudgetOutput.MonthBudgetOutput.PurchasedOutput();
+               tmp.id = purchase.getId();
                 tmp.amount = purchase.getAmount();
                 tmp.date = purchase.getPurchaseDate();
                 tmp.category = purchase.getCategory().getName();
