@@ -8,6 +8,8 @@ import school.be.hackaton_christmas_wallet.infrastructure.repositories.IBudgetsR
 
 import java.util.stream.Collectors;
 
+import static school.be.hackaton_christmas_wallet.application.Budget.query.GetBudgetById.GetBudgetByIdOutput.*;
+
 @Service
 public class GetBudgetByIdHandler {
     private final ModelMapper modelMapper;
@@ -23,13 +25,15 @@ public class GetBudgetByIdHandler {
                 .orElseThrow(() -> new IllegalArgumentException("Budget not found for ID: " + id));
 
         GetBudgetByIdOutput output = new GetBudgetByIdOutput();
+        output.id = dbBudgets.getId();
         output.month = dbBudgets.getMonth();
         output.year = dbBudgets.getYear();
         output.budget = dbBudgets.getBudget();
 
         output.Purchased = dbBudgets.getPurchases().stream()
                 .map(purchase -> {
-                    GetAllBudgetOutput.MonthBudgetOutput.PurchasedOutput purchasedOutput = new GetAllBudgetOutput.MonthBudgetOutput.PurchasedOutput();
+                    PurchasedOutput purchasedOutput = new PurchasedOutput();
+                    purchasedOutput.id = purchase.getId();
                     purchasedOutput.date = purchase.getPurchaseDate();
                     purchasedOutput.amount = purchase.getAmount();
                     purchasedOutput.category = purchase.getCategory() != null ? purchase.getCategory().getName() : null;
