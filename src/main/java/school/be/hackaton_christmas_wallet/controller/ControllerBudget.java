@@ -12,6 +12,7 @@ import school.be.hackaton_christmas_wallet.application.Budget.query.BudgetQueryP
 import school.be.hackaton_christmas_wallet.application.Budget.query.GetBudget.GetAllBudgetOutput;
 import school.be.hackaton_christmas_wallet.application.Budget.query.GetBudgetById.GetBudgetByIdHandler;
 import school.be.hackaton_christmas_wallet.application.Budget.query.GetBudgetById.GetBudgetByIdOutput;
+import school.be.hackaton_christmas_wallet.application.Budget.query.balanceRemaining.BalanceRemainingOutput;
 import school.be.hackaton_christmas_wallet.domains.exceptions.NotFoundException;
 
 @RestController
@@ -56,5 +57,10 @@ public class ControllerBudget {
         } catch (NotFoundException e) {
             return ResponseEntity.notFound().build();
         }
+    }
+
+    @GetMapping("/balanceRemaining/{id}")
+    public ResponseEntity<BalanceRemainingOutput> balanceRemaining(@PathVariable Long id) {
+        return ResponseEntity.ok(budgetQueryProcessor.balanceRemaining(id));
     }
 }
