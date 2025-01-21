@@ -1,4 +1,4 @@
-package school.be.hackaton_christmas_wallet.application.Budget.query.GetBudget;
+package school.be.hackaton_christmas_wallet.application.budget.query.GetBudget;
 
 import org.springframework.stereotype.Service;
 import school.be.hackaton_christmas_wallet.application.utils.IEmptyQueryHandler;

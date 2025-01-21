@@ -28,7 +28,7 @@ public class MonthBudget {
 
 
         if (budget < 99)
-            throw new IllegalArgumentException("Budget too low");
+            throw new IllegalArgumentException("budget too low");
 
         if (!(month.equalsIgnoreCase("January") ||
                 month.equalsIgnoreCase("February") ||
@@ -96,7 +96,7 @@ public class MonthBudget {
         this.budget = budget;
 
         if (budget <= 0) {
-            throw new IllegalArgumentException("Budget too low");
+            throw new IllegalArgumentException("budget too low");
         }
 
         if (month < 1 || month > 12) {

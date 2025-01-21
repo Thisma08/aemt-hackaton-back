@@ -1,7 +1,6 @@
-package school.be.hackaton_christmas_wallet.application.Budget.query.balanceRemainingByCategory;
+package school.be.hackaton_christmas_wallet.application.budget.query.balanceRemaining;
 
 import org.springframework.stereotype.Service;
-import school.be.hackaton_christmas_wallet.application.Budget.query.balanceRemaining.BalanceRemainingOutput;
 import school.be.hackaton_christmas_wallet.application.utils.IQueryHandler;
 import school.be.hackaton_christmas_wallet.domains.exceptions.NotFoundException;
 import school.be.hackaton_christmas_wallet.infrastructure.dbEntities.DbBudgets;
@@ -12,27 +11,25 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class BalanceRemainingByCategoryHandler implements IQueryHandler<BalanceRemainingByCategoryQuery, BalanceRemainingByCategoryOutput> {
+public class BalanceRemainingHandler implements IQueryHandler<Long, BalanceRemainingOutput> {
 
     private final IBudgetsRepository budgetsRepository;
 
-    public BalanceRemainingByCategoryHandler(IBudgetsRepository budgetsRepository) {
+    public BalanceRemainingHandler(IBudgetsRepository budgetsRepository) {
         this.budgetsRepository = budgetsRepository;
     }
 
     @Override
-    public BalanceRemainingByCategoryOutput handle(BalanceRemainingByCategoryQuery input) {
-        Optional<DbBudgets> byId = budgetsRepository.findById(input.id);
+    public BalanceRemainingOutput handle(Long input) {
+        Optional<DbBudgets> byId = budgetsRepository.findById(input);
 
         if (byId.isEmpty())
-            throw new NotFoundException("budget", input.id);
+            throw new NotFoundException("budget", input);
 
-        List<DbPurchases> purchases = byId.get().getPurchases().stream()
-                .filter(dbPurchases -> dbPurchases.getCategory().getName().equalsIgnoreCase(input.name))
-                .toList();
+        List<DbPurchases> purchases = byId.get().getPurchases();
 
 
-        BalanceRemainingByCategoryOutput output = new BalanceRemainingByCategoryOutput();
+        BalanceRemainingOutput output = new BalanceRemainingOutput();
         output.month = byId.get().getMonth();
         output.year = byId.get().getYear();
         output.budget = byId.get().getBudget();

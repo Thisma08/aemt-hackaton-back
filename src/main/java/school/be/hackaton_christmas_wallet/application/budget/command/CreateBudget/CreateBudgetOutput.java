@@ -1,4 +1,4 @@
-package school.be.hackaton_christmas_wallet.application.Budget.command.CreateBudget;
+package school.be.hackaton_christmas_wallet.application.budget.command.CreateBudget;
 
 import lombok.Data;
 

@@ -1,4 +1,4 @@
-package school.be.hackaton_christmas_wallet.application.Budget.query.GetBudget;
+package school.be.hackaton_christmas_wallet.application.budget.query.GetBudget;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -14,7 +14,7 @@ public class GetAllBudgetOutput {
         public float budget;
         public List<PurchasedOutput> Purchased = new ArrayList<>();
 
-        // Budget
+        // budget
         public static class PurchasedOutput {
             public long id;
             public LocalDateTime date;

@@ -1,4 +1,4 @@
-package school.be.hackaton_christmas_wallet.application.Budget.command.UpdateBudget;
+package school.be.hackaton_christmas_wallet.application.budget.command.UpdateBudget;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 

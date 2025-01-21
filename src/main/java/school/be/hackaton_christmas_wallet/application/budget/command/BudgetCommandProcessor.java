@@ -1,10 +1,10 @@
-package school.be.hackaton_christmas_wallet.application.Budget.command;
+package school.be.hackaton_christmas_wallet.application.budget.command;
 
 import lombok.SneakyThrows;
 import org.springframework.stereotype.Service;
-import school.be.hackaton_christmas_wallet.application.Budget.command.CreateBudget.CreateBudgetCommand;
-import school.be.hackaton_christmas_wallet.application.Budget.command.CreateBudget.CreateBudgetOutput;
-import school.be.hackaton_christmas_wallet.application.Budget.command.UpdateBudget.UpdateBudgetCommand;
+import school.be.hackaton_christmas_wallet.application.budget.command.CreateBudget.CreateBudgetCommand;
+import school.be.hackaton_christmas_wallet.application.budget.command.CreateBudget.CreateBudgetOutput;
+import school.be.hackaton_christmas_wallet.application.budget.command.UpdateBudget.UpdateBudgetCommand;
 import school.be.hackaton_christmas_wallet.application.utils.ICommandHandler;
 import school.be.hackaton_christmas_wallet.application.utils.IEmptyOutputCommandHandler;
 

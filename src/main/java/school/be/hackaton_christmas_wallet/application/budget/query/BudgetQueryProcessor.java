@@ -1,12 +1,12 @@
-package school.be.hackaton_christmas_wallet.application.Budget.query;
+package school.be.hackaton_christmas_wallet.application.budget.query;
 
 import org.springframework.stereotype.Service;
-import school.be.hackaton_christmas_wallet.application.Budget.query.GetBudget.GetAllBudgetOutput;
-import school.be.hackaton_christmas_wallet.application.Budget.query.GetBudgetById.GetBudgetByIdHandler;
-import school.be.hackaton_christmas_wallet.application.Budget.query.GetBudgetById.GetBudgetByIdOutput;
-import school.be.hackaton_christmas_wallet.application.Budget.query.balanceRemaining.BalanceRemainingOutput;
-import school.be.hackaton_christmas_wallet.application.Budget.query.balanceRemainingByCategory.BalanceRemainingByCategoryOutput;
-import school.be.hackaton_christmas_wallet.application.Budget.query.balanceRemainingByCategory.BalanceRemainingByCategoryQuery;
+import school.be.hackaton_christmas_wallet.application.budget.query.GetBudget.GetAllBudgetOutput;
+import school.be.hackaton_christmas_wallet.application.budget.query.GetBudgetById.GetBudgetByIdHandler;
+import school.be.hackaton_christmas_wallet.application.budget.query.GetBudgetById.GetBudgetByIdOutput;
+import school.be.hackaton_christmas_wallet.application.budget.query.balanceRemaining.BalanceRemainingOutput;
+import school.be.hackaton_christmas_wallet.application.budget.query.balanceRemainingByCategory.BalanceRemainingByCategoryOutput;
+import school.be.hackaton_christmas_wallet.application.budget.query.balanceRemainingByCategory.BalanceRemainingByCategoryQuery;
 import school.be.hackaton_christmas_wallet.application.utils.IEmptyQueryHandler;
 import school.be.hackaton_christmas_wallet.application.utils.IQueryHandler;
 

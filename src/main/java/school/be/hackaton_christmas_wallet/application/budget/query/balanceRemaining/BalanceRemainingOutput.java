@@ -1,4 +1,4 @@
-package school.be.hackaton_christmas_wallet.application.Budget.query.balanceRemaining;
+package school.be.hackaton_christmas_wallet.application.budget.query.balanceRemaining;
 
 public class BalanceRemainingOutput {
     public int month;
