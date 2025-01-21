@@ -13,6 +13,8 @@ import school.be.hackaton_christmas_wallet.application.budget.query.GetBudget.Ge
 import school.be.hackaton_christmas_wallet.application.budget.query.GetBudgetById.GetBudgetByIdOutput;
 import school.be.hackaton_christmas_wallet.application.budget.query.GetByCategoryAndDateCategory.GetByCategoryAndDateCategoryOutput;
 import school.be.hackaton_christmas_wallet.application.budget.query.GetByCategoryAndDateCategory.GetByCategoryAndDateCategoryQuery;
+import school.be.hackaton_christmas_wallet.application.budget.query.GetByDateCategory.GetByDateCategoryOutput;
+import school.be.hackaton_christmas_wallet.application.budget.query.GetByDateCategory.GetByDateCategoryQuery;
 import school.be.hackaton_christmas_wallet.application.budget.query.balanceRemaining.BalanceRemainingOutput;
 import school.be.hackaton_christmas_wallet.application.budget.query.balanceRemainingByCategory.BalanceRemainingByCategoryHandler;
 import school.be.hackaton_christmas_wallet.application.budget.query.balanceRemainingByCategory.BalanceRemainingByCategoryOutput;
@@ -78,7 +80,11 @@ public class ControllerBudget {
     }
 
     @PostMapping("/GetByCategoryAndDateCategoryQuery/")
-    public ResponseEntity<GetByCategoryAndDateCategoryOutput> BudgetQueryProcessor(@RequestBody GetByCategoryAndDateCategoryQuery input) {
+    public ResponseEntity<GetByCategoryAndDateCategoryOutput> GetByCategoryAndDateCategory(@RequestBody GetByCategoryAndDateCategoryQuery input) {
         return ResponseEntity.ok(budgetQueryProcessor.GetByCategoryAndDateCategory(input));
+    }
+    @PostMapping("/GetByDateCategory/")
+    public ResponseEntity<GetByDateCategoryOutput> GetByDateCategory(@RequestBody GetByDateCategoryQuery input) {
+        return ResponseEntity.ok(budgetQueryProcessor.GetByDateCategory(input));
     }
 }

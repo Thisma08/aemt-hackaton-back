@@ -17,18 +17,6 @@ public class GetByCategoryAndDateCategoryHandler implements IQueryHandler<GetByC
     @Override
     public GetByCategoryAndDateCategoryOutput handle(GetByCategoryAndDateCategoryQuery input) {
 
-//        DbBudgets dbTmp = budgetsRepository.findAll().stream()
-//                .filter(budget -> budget.getMonth() == input.month && budget.getYear() == input.year)
-//                .findFirst()
-//                .orElse(null);
-//
-//
-//        // TODO : gerer exception
-//        if (dbTmp == null) {
-//            return new GetByCategoryAndDateCategoryOutput();
-//        }
-//        DbBudgets dbBudget = budgetsRepository.findById(dbTmp.getId()).orElse(null);
-
         DbBudgets dbBudget = budgetsRepository.findAll().stream()
                 .filter(budget -> budget.getMonth() == input.month && budget.getYear() == input.year)
                 .findFirst()
