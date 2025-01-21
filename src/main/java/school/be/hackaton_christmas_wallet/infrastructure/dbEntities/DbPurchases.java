@@ -22,6 +22,7 @@ public class DbPurchases {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
     private float amount;
 
     @Column(name = "purchasedate")

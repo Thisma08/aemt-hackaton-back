@@ -5,6 +5,8 @@ import school.be.hackaton_christmas_wallet.application.Budget.query.GetBudget.Ge
 import school.be.hackaton_christmas_wallet.application.Budget.query.GetBudgetById.GetBudgetByIdHandler;
 import school.be.hackaton_christmas_wallet.application.Budget.query.GetBudgetById.GetBudgetByIdOutput;
 import school.be.hackaton_christmas_wallet.application.Budget.query.balanceRemaining.BalanceRemainingOutput;
+import school.be.hackaton_christmas_wallet.application.Budget.query.balanceRemainingByCategory.BalanceRemainingByCategoryOutput;
+import school.be.hackaton_christmas_wallet.application.Budget.query.balanceRemainingByCategory.BalanceRemainingByCategoryQuery;
 import school.be.hackaton_christmas_wallet.application.utils.IEmptyQueryHandler;
 import school.be.hackaton_christmas_wallet.application.utils.IQueryHandler;
 
@@ -13,11 +15,16 @@ public class BudgetQueryProcessor {
     private final IEmptyQueryHandler<GetAllBudgetOutput> getAllBudgetHandler;
     private final GetBudgetByIdHandler getBudgetByIdHandler;
     private final IQueryHandler<Long, BalanceRemainingOutput> balanceRemainingHandler;
+    private final IQueryHandler<BalanceRemainingByCategoryQuery, BalanceRemainingByCategoryOutput> balanceRemainingByCategoryHandler;
 
-    public BudgetQueryProcessor(IEmptyQueryHandler<GetAllBudgetOutput> getAllBudgetHandler, GetBudgetByIdHandler getBudgetByIdHandler, IQueryHandler<Long, BalanceRemainingOutput> balanceRemainingHandler) {
+    public BudgetQueryProcessor(IEmptyQueryHandler<GetAllBudgetOutput> getAllBudgetHandler,
+                                GetBudgetByIdHandler getBudgetByIdHandler,
+                                IQueryHandler<Long, BalanceRemainingOutput> balanceRemainingHandler,
+                                IQueryHandler<BalanceRemainingByCategoryQuery, BalanceRemainingByCategoryOutput> balanceRemainingByCategoryHandler) {
         this.getAllBudgetHandler = getAllBudgetHandler;
         this.getBudgetByIdHandler = getBudgetByIdHandler;
         this.balanceRemainingHandler = balanceRemainingHandler;
+        this.balanceRemainingByCategoryHandler = balanceRemainingByCategoryHandler;
     }
 
     public GetAllBudgetOutput GetAllBudget() {
@@ -30,5 +37,9 @@ public class BudgetQueryProcessor {
 
     public BalanceRemainingOutput balanceRemaining(Long id) {
         return balanceRemainingHandler.handle(id);
+    }
+
+    public BalanceRemainingByCategoryOutput balanceRemainingByCategory(BalanceRemainingByCategoryQuery input) {
+        return balanceRemainingByCategoryHandler.handle(input);
     }
 }

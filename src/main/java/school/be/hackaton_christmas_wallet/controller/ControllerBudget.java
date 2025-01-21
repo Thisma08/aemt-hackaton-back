@@ -13,6 +13,9 @@ import school.be.hackaton_christmas_wallet.application.Budget.query.GetBudget.Ge
 import school.be.hackaton_christmas_wallet.application.Budget.query.GetBudgetById.GetBudgetByIdHandler;
 import school.be.hackaton_christmas_wallet.application.Budget.query.GetBudgetById.GetBudgetByIdOutput;
 import school.be.hackaton_christmas_wallet.application.Budget.query.balanceRemaining.BalanceRemainingOutput;
+import school.be.hackaton_christmas_wallet.application.Budget.query.balanceRemainingByCategory.BalanceRemainingByCategoryHandler;
+import school.be.hackaton_christmas_wallet.application.Budget.query.balanceRemainingByCategory.BalanceRemainingByCategoryOutput;
+import school.be.hackaton_christmas_wallet.application.Budget.query.balanceRemainingByCategory.BalanceRemainingByCategoryQuery;
 import school.be.hackaton_christmas_wallet.domains.exceptions.NotFoundException;
 
 @RestController
@@ -20,10 +23,12 @@ import school.be.hackaton_christmas_wallet.domains.exceptions.NotFoundException;
 public class ControllerBudget {
     private final BudgetCommandProcessor budgetCommandProcessor;
     private final BudgetQueryProcessor budgetQueryProcessor;
+    private final BalanceRemainingByCategoryHandler balanceRemainingByCategoryHandler;
 
-    public ControllerBudget(BudgetCommandProcessor budgetCommandProcessor,BudgetQueryProcessor budgetQueryProcessor) {
+    public ControllerBudget(BudgetCommandProcessor budgetCommandProcessor, BudgetQueryProcessor budgetQueryProcessor, BalanceRemainingByCategoryHandler balanceRemainingByCategoryHandler) {
         this.budgetCommandProcessor = budgetCommandProcessor;
         this.budgetQueryProcessor = budgetQueryProcessor;
+        this.balanceRemainingByCategoryHandler = balanceRemainingByCategoryHandler;
     }
 
 
@@ -62,5 +67,14 @@ public class ControllerBudget {
     @GetMapping("/balanceRemaining/{id}")
     public ResponseEntity<BalanceRemainingOutput> balanceRemaining(@PathVariable Long id) {
         return ResponseEntity.ok(budgetQueryProcessor.balanceRemaining(id));
+    }
+    @GetMapping("/balanceRemainingByCategory/{id}")
+    public ResponseEntity<BalanceRemainingByCategoryOutput> BalanceRemainingByCategory(@PathVariable Long id, String name) {
+        BalanceRemainingByCategoryQuery input = new BalanceRemainingByCategoryQuery();
+
+        input.id = id;
+        input.name = name;
+
+        return ResponseEntity.ok(budgetQueryProcessor.balanceRemainingByCategory(input));
     }
 }
