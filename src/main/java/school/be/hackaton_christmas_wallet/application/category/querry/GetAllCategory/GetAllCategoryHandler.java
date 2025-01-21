@@ -26,7 +26,7 @@ public class GetAllCategoryHandler implements IEmptyQueryHandler<GetAllCategoryO
         dbCategories.forEach(dbCategory -> {
             GetAllCategoryOutput.CategoryOutput outputTmp = new GetAllCategoryOutput.CategoryOutput();
 
-//            outputTmp.id = dbCategory.getId();
+            outputTmp.id = dbCategory.getId();
             outputTmp.name = dbCategory.getName();
 
             output.categoryOutputList.add(outputTmp);
