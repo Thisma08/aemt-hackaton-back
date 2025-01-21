@@ -15,4 +15,5 @@ public class PurchaseQueryProcessor {
     public GetAllPurchasingOutput getAllPurchasing(){
         return this.getAllPurchasingHandler.handle();
     }
+
 }
