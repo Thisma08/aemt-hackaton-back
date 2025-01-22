@@ -11,10 +11,10 @@ import school.be.hackaton_christmas_wallet.application.budget.command.UpdateBudg
 import school.be.hackaton_christmas_wallet.application.budget.query.BudgetQueryProcessor;
 import school.be.hackaton_christmas_wallet.application.budget.query.GetBudget.GetAllBudgetOutput;
 import school.be.hackaton_christmas_wallet.application.budget.query.GetBudgetById.GetBudgetByIdOutput;
-import school.be.hackaton_christmas_wallet.application.budget.query.GetByCategoryAndDateCategory.GetByCategoryAndDateCategoryOutput;
-import school.be.hackaton_christmas_wallet.application.budget.query.GetByCategoryAndDateCategory.GetByCategoryAndDateCategoryQuery;
-import school.be.hackaton_christmas_wallet.application.budget.query.GetByDateCategory.GetByDateCategoryOutput;
-import school.be.hackaton_christmas_wallet.application.budget.query.GetByDateCategory.GetByDateCategoryQuery;
+import school.be.hackaton_christmas_wallet.application.budget.query.GetByCategoryDate.GetByCategoryDateOutput;
+import school.be.hackaton_christmas_wallet.application.budget.query.GetByCategoryDate.GetByCategoryDateQuery;
+import school.be.hackaton_christmas_wallet.application.budget.query.GetByDate.GetByDateOutput;
+import school.be.hackaton_christmas_wallet.application.budget.query.GetByDate.GetByDateQuery;
 import school.be.hackaton_christmas_wallet.application.budget.query.balanceRemaining.BalanceRemainingOutput;
 import school.be.hackaton_christmas_wallet.application.budget.query.balanceRemainingByCategory.BalanceRemainingByCategoryHandler;
 import school.be.hackaton_christmas_wallet.application.budget.query.balanceRemainingByCategory.BalanceRemainingByCategoryOutput;
@@ -80,11 +80,11 @@ public class ControllerBudget {
     }
 
     @PostMapping("/GetByCategoryDate/")
-    public ResponseEntity<GetByCategoryAndDateCategoryOutput> GetByCategoryAndDateCategory(@RequestBody GetByCategoryAndDateCategoryQuery input) {
+    public ResponseEntity<GetByCategoryDateOutput> GetByCategoryAndDateCategory(@RequestBody GetByCategoryDateQuery input) {
         return ResponseEntity.ok(budgetQueryProcessor.GetByCategoryAndDateCategory(input));
     }
     @PostMapping("/GetByDate/")
-    public ResponseEntity<GetByDateCategoryOutput> GetByDateCategory(@RequestBody GetByDateCategoryQuery input) {
+    public ResponseEntity<GetByDateOutput> GetByDateCategory(@RequestBody GetByDateQuery input) {
         return ResponseEntity.ok(budgetQueryProcessor.GetByDateCategory(input));
     }
 }

@@ -4,10 +4,10 @@ import org.springframework.stereotype.Service;
 import school.be.hackaton_christmas_wallet.application.budget.query.GetBudget.GetAllBudgetOutput;
 import school.be.hackaton_christmas_wallet.application.budget.query.GetBudgetById.GetBudgetByIdHandler;
 import school.be.hackaton_christmas_wallet.application.budget.query.GetBudgetById.GetBudgetByIdOutput;
-import school.be.hackaton_christmas_wallet.application.budget.query.GetByCategoryAndDateCategory.GetByCategoryAndDateCategoryOutput;
-import school.be.hackaton_christmas_wallet.application.budget.query.GetByCategoryAndDateCategory.GetByCategoryAndDateCategoryQuery;
-import school.be.hackaton_christmas_wallet.application.budget.query.GetByDateCategory.GetByDateCategoryOutput;
-import school.be.hackaton_christmas_wallet.application.budget.query.GetByDateCategory.GetByDateCategoryQuery;
+import school.be.hackaton_christmas_wallet.application.budget.query.GetByCategoryDate.GetByCategoryDateOutput;
+import school.be.hackaton_christmas_wallet.application.budget.query.GetByCategoryDate.GetByCategoryDateQuery;
+import school.be.hackaton_christmas_wallet.application.budget.query.GetByDate.GetByDateOutput;
+import school.be.hackaton_christmas_wallet.application.budget.query.GetByDate.GetByDateQuery;
 import school.be.hackaton_christmas_wallet.application.budget.query.balanceRemaining.BalanceRemainingOutput;
 import school.be.hackaton_christmas_wallet.application.budget.query.balanceRemainingByCategory.BalanceRemainingByCategoryOutput;
 import school.be.hackaton_christmas_wallet.application.budget.query.balanceRemainingByCategory.BalanceRemainingByCategoryQuery;
@@ -20,15 +20,15 @@ public class BudgetQueryProcessor {
     private final IQueryHandler<Long, GetBudgetByIdOutput> getBudgetByIdHandler;
     private final IQueryHandler<Long, BalanceRemainingOutput> balanceRemainingHandler;
     private final IQueryHandler<BalanceRemainingByCategoryQuery, BalanceRemainingByCategoryOutput> balanceRemainingByCategoryHandler;
-    private final IQueryHandler<GetByCategoryAndDateCategoryQuery, GetByCategoryAndDateCategoryOutput> getByCategoryAndDateCategoryHandler;
-    private final IQueryHandler<GetByDateCategoryQuery, GetByDateCategoryOutput> getByDateCategoryHandler;
+    private final IQueryHandler<GetByCategoryDateQuery, GetByCategoryDateOutput> getByCategoryAndDateCategoryHandler;
+    private final IQueryHandler<GetByDateQuery, GetByDateOutput> getByDateCategoryHandler;
 
     public BudgetQueryProcessor(IEmptyQueryHandler<GetAllBudgetOutput> getAllBudgetHandler,
                                 GetBudgetByIdHandler getBudgetByIdHandler,
                                 IQueryHandler<Long, BalanceRemainingOutput> balanceRemainingHandler,
                                 IQueryHandler<BalanceRemainingByCategoryQuery, BalanceRemainingByCategoryOutput> balanceRemainingByCategoryHandler,
-                                IQueryHandler<GetByCategoryAndDateCategoryQuery, GetByCategoryAndDateCategoryOutput> getByCategoryAndDateCategoryHandler,
-                                IQueryHandler<GetByDateCategoryQuery, GetByDateCategoryOutput> getByDateCategoryHandler) {
+                                IQueryHandler<GetByCategoryDateQuery, GetByCategoryDateOutput> getByCategoryAndDateCategoryHandler,
+                                IQueryHandler<GetByDateQuery, GetByDateOutput> getByDateCategoryHandler) {
         this.getAllBudgetHandler = getAllBudgetHandler;
         this.getBudgetByIdHandler = getBudgetByIdHandler;
         this.balanceRemainingHandler = balanceRemainingHandler;
@@ -53,11 +53,11 @@ public class BudgetQueryProcessor {
         return balanceRemainingByCategoryHandler.handle(input);
     }
 
-    public GetByCategoryAndDateCategoryOutput GetByCategoryAndDateCategory(GetByCategoryAndDateCategoryQuery input) {
+    public GetByCategoryDateOutput GetByCategoryAndDateCategory(GetByCategoryDateQuery input) {
         return getByCategoryAndDateCategoryHandler.handle(input);
     }
 
-    public GetByDateCategoryOutput GetByDateCategory(GetByDateCategoryQuery input) {
+    public GetByDateOutput GetByDateCategory(GetByDateQuery input) {
         return getByDateCategoryHandler.handle(input);
     }
 

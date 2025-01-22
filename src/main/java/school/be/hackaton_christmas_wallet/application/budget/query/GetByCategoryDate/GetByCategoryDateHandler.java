@@ -1,4 +1,4 @@
-package school.be.hackaton_christmas_wallet.application.budget.query.GetByCategoryAndDateCategory;
+package school.be.hackaton_christmas_wallet.application.budget.query.GetByCategoryDate;
 
 import org.springframework.stereotype.Service;
 import school.be.hackaton_christmas_wallet.application.utils.IQueryHandler;
@@ -6,16 +6,16 @@ import school.be.hackaton_christmas_wallet.infrastructure.dbEntities.DbBudgets;
 import school.be.hackaton_christmas_wallet.infrastructure.repositories.IBudgetsRepository;
 
 @Service
-public class GetByCategoryAndDateCategoryHandler implements IQueryHandler<GetByCategoryAndDateCategoryQuery, GetByCategoryAndDateCategoryOutput> {
+public class GetByCategoryDateHandler implements IQueryHandler<GetByCategoryDateQuery, GetByCategoryDateOutput> {
 
     private final IBudgetsRepository budgetsRepository;
 
-    public GetByCategoryAndDateCategoryHandler(IBudgetsRepository budgetsRepository) {
+    public GetByCategoryDateHandler(IBudgetsRepository budgetsRepository) {
         this.budgetsRepository = budgetsRepository;
     }
 
     @Override
-    public GetByCategoryAndDateCategoryOutput handle(GetByCategoryAndDateCategoryQuery input) {
+    public GetByCategoryDateOutput handle(GetByCategoryDateQuery input) {
 
         DbBudgets dbBudget = budgetsRepository.findAll().stream()
                 .filter(budget -> budget.getMonth() == input.month && budget.getYear() == input.year)
@@ -25,11 +25,11 @@ public class GetByCategoryAndDateCategoryHandler implements IQueryHandler<GetByC
 
         // TODO : gerer exception
         if (dbBudget == null) {
-            return new GetByCategoryAndDateCategoryOutput();
+            return new GetByCategoryDateOutput();
         }
 
-        GetByCategoryAndDateCategoryOutput output = new GetByCategoryAndDateCategoryOutput();
-        GetByCategoryAndDateCategoryOutput.MonthBudgetOutput monthBudgetOutput = new GetByCategoryAndDateCategoryOutput.MonthBudgetOutput();
+        GetByCategoryDateOutput output = new GetByCategoryDateOutput();
+        GetByCategoryDateOutput.MonthBudgetOutput monthBudgetOutput = new GetByCategoryDateOutput.MonthBudgetOutput();
 
         monthBudgetOutput.id = dbBudget.getId();
         monthBudgetOutput.budget = dbBudget.getBudget();
@@ -40,7 +40,7 @@ public class GetByCategoryAndDateCategoryHandler implements IQueryHandler<GetByC
         dbBudget.getPurchases().stream()
                 .filter(purchase -> purchase.getCategory().getName().equalsIgnoreCase(input.category))
                 .forEach(purchase -> {
-                    GetByCategoryAndDateCategoryOutput.MonthBudgetOutput.PurchasedOutput tmp = new GetByCategoryAndDateCategoryOutput.MonthBudgetOutput.PurchasedOutput();
+                    GetByCategoryDateOutput.MonthBudgetOutput.PurchasedOutput tmp = new GetByCategoryDateOutput.MonthBudgetOutput.PurchasedOutput();
                     tmp.id = purchase.getId();
                     tmp.amount = purchase.getAmount();
                     tmp.date = purchase.getPurchaseDate();

@@ -1,12 +1,10 @@
-package school.be.hackaton_christmas_wallet.application.budget.query.GetByCategoryAndDateCategory;
-
-import school.be.hackaton_christmas_wallet.application.budget.query.GetBudget.GetAllBudgetOutput;
+package school.be.hackaton_christmas_wallet.application.budget.query.GetByCategoryDate;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GetByCategoryAndDateCategoryOutput {
+public class GetByCategoryDateOutput {
     public List<MonthBudgetOutput> Budgets = new ArrayList<>();
 
     public static class MonthBudgetOutput {
