@@ -31,18 +31,10 @@ public class CreatePurchasingHandler implements IQueryHandler<CreatePurchasingQu
     @Override
     public CreatePurchasingOutput handle(CreatePurchasingQuery input) {
 
-        // TODO : changer utilisateur
-        long UserId = 1L;
 
         DbPurchases db = new DbPurchases();
-        db.setUser(usersRepository.findById(1L).get());
         db.setAmount(input.amount);
         db.setPurchaseDate(input.purchaseDate);
-
-        Optional<DbUsers> dbUsers = usersRepository.findById(UserId);
-        if (dbUsers.isEmpty())
-            throw new NotFoundException("User", UserId);
-        db.setUser(dbUsers.get());
 
         Optional<DbBudgets> dbBudgets = budgetsRepository.findById(input.budgetId);
         if (dbBudgets.isEmpty())

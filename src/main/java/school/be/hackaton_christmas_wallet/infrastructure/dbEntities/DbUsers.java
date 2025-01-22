@@ -14,7 +14,7 @@ import java.util.ArrayList;
 @Table(name = "users")
 @Data
 @NoArgsConstructor
-@ToString(exclude = "purchases")
+@ToString(exclude = "budget")
 public class DbUsers {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,5 +24,5 @@ public class DbUsers {
     private String password;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-    private List<DbPurchases> purchases = new ArrayList<>();
+    private List<DbBudgets> budget = new ArrayList<>();
 }

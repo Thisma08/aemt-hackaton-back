@@ -12,7 +12,7 @@ import lombok.*;
 @Table(name = "purchases")
 @Data
 @NoArgsConstructor
-@ToString(exclude = {"user", "category", "budget"})
+@ToString(exclude = {"category", "budget"})
 public class DbPurchases {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,10 +22,6 @@ public class DbPurchases {
 
     @Column(name = "purchasedate")
     private LocalDateTime purchaseDate;
-
-    @ManyToOne
-    @JoinColumn(name = "userid", referencedColumnName = "id")
-    private DbUsers user;
 
     @ManyToOne
     @JoinColumn(name = "categoryid", referencedColumnName = "id")
