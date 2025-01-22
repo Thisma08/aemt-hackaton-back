@@ -23,7 +23,6 @@ public class MonthBudget {
         this.year = year;
         this.purchases = purchases;
 
-
         if (budget < 99)
             throw new IllegalArgumentException("budget too low");
 
