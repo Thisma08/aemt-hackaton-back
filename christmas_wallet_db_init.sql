@@ -114,10 +114,11 @@ create index idx_budgets_user on budgets (userId);
 create index idx_purchase_category on purchases (categoryId);
 create index idx_purchase_date on purchases (purchaseDate);
 
+# ADMIN = $2a$12$m9e1C.0YXLgCSc/g.gJHhOsKQ276NjZWlTanPkJp6xDYu7KZLTRjq
 INSERT INTO users (username, password)
-VALUES ('user1', 'password123'),
-       ('user2', 'securepass'),
-       ('user3', 'strongpassword');
+VALUES ('user1', '$2a$12$m9e1C.0YXLgCSc/g.gJHhOsKQ276NjZWlTanPkJp6xDYu7KZLTRjq'),
+       ('user2', '$2a$12$m9e1C.0YXLgCSc/g.gJHhOsKQ276NjZWlTanPkJp6xDYu7KZLTRjq'),
+       ('user3', '$2a$12$m9e1C.0YXLgCSc/g.gJHhOsKQ276NjZWlTanPkJp6xDYu7KZLTRjq');
 INSERT INTO categories (name)
 VALUES ('Alimentation'),
        ('Vetements'),
