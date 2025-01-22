@@ -79,11 +79,11 @@ public class ControllerBudget {
         return ResponseEntity.ok(budgetQueryProcessor.balanceRemainingByCategory(input));
     }
 
-    @PostMapping("/GetByCategoryAndDateCategoryQuery/")
+    @PostMapping("/GetByCategoryDate/")
     public ResponseEntity<GetByCategoryAndDateCategoryOutput> GetByCategoryAndDateCategory(@RequestBody GetByCategoryAndDateCategoryQuery input) {
         return ResponseEntity.ok(budgetQueryProcessor.GetByCategoryAndDateCategory(input));
     }
-    @PostMapping("/GetByDateCategory/")
+    @PostMapping("/GetByDate/")
     public ResponseEntity<GetByDateCategoryOutput> GetByDateCategory(@RequestBody GetByDateCategoryQuery input) {
         return ResponseEntity.ok(budgetQueryProcessor.GetByDateCategory(input));
     }
