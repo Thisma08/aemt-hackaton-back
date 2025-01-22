@@ -15,6 +15,8 @@ import school.be.hackaton_christmas_wallet.application.budget.query.GetByCategor
 import school.be.hackaton_christmas_wallet.application.budget.query.GetByCategoryDate.GetByCategoryDateQuery;
 import school.be.hackaton_christmas_wallet.application.budget.query.GetByDate.GetByDateOutput;
 import school.be.hackaton_christmas_wallet.application.budget.query.GetByDate.GetByDateQuery;
+import school.be.hackaton_christmas_wallet.application.budget.query.GetCategoriesStats.GetCategoriesStatsOutput;
+import school.be.hackaton_christmas_wallet.application.budget.query.GetCategoriesStats.GetCategoriesStatsQuery;
 import school.be.hackaton_christmas_wallet.application.budget.query.balanceRemaining.BalanceRemainingOutput;
 import school.be.hackaton_christmas_wallet.application.budget.query.balanceRemainingByCategory.BalanceRemainingByCategoryHandler;
 import school.be.hackaton_christmas_wallet.application.budget.query.balanceRemainingByCategory.BalanceRemainingByCategoryOutput;
@@ -41,6 +43,12 @@ public class ControllerBudget {
     @GetMapping("/{id}")
     public ResponseEntity<GetBudgetByIdOutput> GetAllBudget(@PathVariable long id) {
         return ResponseEntity.ok(budgetQueryProcessor.GetBudgetById(id));
+    }
+
+    @GetMapping("/getCategoryStats/{month}/{year}")
+    public GetCategoriesStatsOutput getCategoryStats(@PathVariable int month, @PathVariable int year) {
+        GetCategoriesStatsQuery query = new GetCategoriesStatsQuery(year, month);
+        return budgetQueryProcessor.GetCategoriesStats(query);
     }
 
     @PostMapping

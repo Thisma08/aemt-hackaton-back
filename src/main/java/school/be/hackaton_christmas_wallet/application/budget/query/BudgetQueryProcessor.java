@@ -8,6 +8,8 @@ import school.be.hackaton_christmas_wallet.application.budget.query.GetByCategor
 import school.be.hackaton_christmas_wallet.application.budget.query.GetByCategoryDate.GetByCategoryDateQuery;
 import school.be.hackaton_christmas_wallet.application.budget.query.GetByDate.GetByDateOutput;
 import school.be.hackaton_christmas_wallet.application.budget.query.GetByDate.GetByDateQuery;
+import school.be.hackaton_christmas_wallet.application.budget.query.GetCategoriesStats.GetCategoriesStatsOutput;
+import school.be.hackaton_christmas_wallet.application.budget.query.GetCategoriesStats.GetCategoriesStatsQuery;
 import school.be.hackaton_christmas_wallet.application.budget.query.balanceRemaining.BalanceRemainingOutput;
 import school.be.hackaton_christmas_wallet.application.budget.query.balanceRemainingByCategory.BalanceRemainingByCategoryOutput;
 import school.be.hackaton_christmas_wallet.application.budget.query.balanceRemainingByCategory.BalanceRemainingByCategoryQuery;
@@ -22,19 +24,22 @@ public class BudgetQueryProcessor {
     private final IQueryHandler<BalanceRemainingByCategoryQuery, BalanceRemainingByCategoryOutput> balanceRemainingByCategoryHandler;
     private final IQueryHandler<GetByCategoryDateQuery, GetByCategoryDateOutput> getByCategoryAndDateCategoryHandler;
     private final IQueryHandler<GetByDateQuery, GetByDateOutput> getByDateCategoryHandler;
+    private final IQueryHandler<GetCategoriesStatsQuery, GetCategoriesStatsOutput> getCategoriesStatsHandler;
+
 
     public BudgetQueryProcessor(IEmptyQueryHandler<GetAllBudgetOutput> getAllBudgetHandler,
                                 GetBudgetByIdHandler getBudgetByIdHandler,
                                 IQueryHandler<Long, BalanceRemainingOutput> balanceRemainingHandler,
                                 IQueryHandler<BalanceRemainingByCategoryQuery, BalanceRemainingByCategoryOutput> balanceRemainingByCategoryHandler,
                                 IQueryHandler<GetByCategoryDateQuery, GetByCategoryDateOutput> getByCategoryAndDateCategoryHandler,
-                                IQueryHandler<GetByDateQuery, GetByDateOutput> getByDateCategoryHandler) {
+                                IQueryHandler<GetByDateQuery, GetByDateOutput> getByDateCategoryHandler, IQueryHandler<GetCategoriesStatsQuery, GetCategoriesStatsOutput> getCategoriesStatsHandler) {
         this.getAllBudgetHandler = getAllBudgetHandler;
         this.getBudgetByIdHandler = getBudgetByIdHandler;
         this.balanceRemainingHandler = balanceRemainingHandler;
         this.balanceRemainingByCategoryHandler = balanceRemainingByCategoryHandler;
         this.getByCategoryAndDateCategoryHandler = getByCategoryAndDateCategoryHandler;
         this.getByDateCategoryHandler = getByDateCategoryHandler;
+        this.getCategoriesStatsHandler = getCategoriesStatsHandler;
     }
 
     public GetAllBudgetOutput GetAllBudget() {
@@ -43,6 +48,10 @@ public class BudgetQueryProcessor {
 
     public GetBudgetByIdOutput GetBudgetById(long id) {
         return getBudgetByIdHandler.handle(id);
+    }
+
+    public GetCategoriesStatsOutput GetCategoriesStats(GetCategoriesStatsQuery input) {
+        return getCategoriesStatsHandler.handle(input);
     }
 
     public BalanceRemainingOutput balanceRemaining(Long id) {
