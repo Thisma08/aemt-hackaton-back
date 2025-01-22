@@ -46,6 +46,7 @@ public class GetByCategoryAndDateCategoryHandler implements IQueryHandler<GetByC
                     tmp.date = purchase.getPurchaseDate();
                     tmp.category = purchase.getCategory().getName();
                     monthBudgetOutput.balanceRemaining -= tmp.amount;
+                    monthBudgetOutput.balanceTotal += tmp.amount;
                     monthBudgetOutput.Purchased.add(tmp);
                 });
 

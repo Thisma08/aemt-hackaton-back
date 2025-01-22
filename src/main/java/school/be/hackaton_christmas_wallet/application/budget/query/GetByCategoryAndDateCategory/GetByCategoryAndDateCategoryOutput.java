@@ -15,6 +15,7 @@ public class GetByCategoryAndDateCategoryOutput {
         public int year;
         public float budget;
         public float balanceRemaining;
+        public float balanceTotal;
         public List<PurchasedOutput> Purchased = new ArrayList<>();
 
         // budget
