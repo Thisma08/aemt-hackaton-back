@@ -8,4 +8,8 @@ public class NotFoundException extends RuntimeException {
     public NotFoundException(String categories, long id) {
         super("Not found " + categories + " : " + id);
     }
+
+    public NotFoundException(long id) {
+        super("Element with id " + id + " does not exist.");
+    }
 }
