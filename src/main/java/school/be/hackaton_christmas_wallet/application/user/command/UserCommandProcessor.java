@@ -7,10 +7,10 @@ import school.be.hackaton_christmas_wallet.application.utils.IQueryHandler;
 
 @Service
 public class UserCommandProcessor {
-    private final IQueryHandler<LoginQuery, Boolean> loginHandler;
+    private final IQueryHandler<LoginQuery, String> loginHandler;
     private final IQueryHandler<RegisterQuery, Boolean> registerHandler;
 
-    public UserCommandProcessor(IQueryHandler<LoginQuery, Boolean> loginHandler,
+    public UserCommandProcessor(IQueryHandler<LoginQuery, String> loginHandler,
                                 IQueryHandler<RegisterQuery, Boolean> registerHandler) {
         this.loginHandler = loginHandler;
         this.registerHandler = registerHandler;
@@ -20,7 +20,7 @@ public class UserCommandProcessor {
         return registerHandler.handle(query);
     }
 
-    public boolean loginUser(LoginQuery query) {
+    public String loginUser(LoginQuery query) {
         return loginHandler.handle(query);
     }
 }

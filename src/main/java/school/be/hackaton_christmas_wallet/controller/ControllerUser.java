@@ -23,7 +23,8 @@ public class ControllerUser {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<Boolean> loginUser(@RequestBody LoginQuery query) {
-        return ResponseEntity.ok(userCommandProcessor.loginUser(query));
+    public ResponseEntity<String> loginUser(@RequestBody LoginQuery query) {
+        String token = userCommandProcessor.loginUser(query);
+        return ResponseEntity.ok(token);
     }
 }

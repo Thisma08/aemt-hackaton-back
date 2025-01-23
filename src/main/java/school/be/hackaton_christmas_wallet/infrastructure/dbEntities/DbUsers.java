@@ -25,4 +25,6 @@ public class DbUsers {
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<DbBudgets> budget = new ArrayList<>();
+
+
 }
