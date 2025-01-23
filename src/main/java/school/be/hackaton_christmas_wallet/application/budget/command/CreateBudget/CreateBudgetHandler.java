@@ -4,14 +4,18 @@ import org.springframework.stereotype.Service;
 import school.be.hackaton_christmas_wallet.application.utils.ICommandHandler;
 import school.be.hackaton_christmas_wallet.domains.MonthBudget;
 import school.be.hackaton_christmas_wallet.infrastructure.dbEntities.DbBudgets;
+import school.be.hackaton_christmas_wallet.infrastructure.dbEntities.DbUsers;
 import school.be.hackaton_christmas_wallet.infrastructure.repositories.IBudgetsRepository;
+import school.be.hackaton_christmas_wallet.infrastructure.repositories.IUsersRepository;
 
 @Service
 public class CreateBudgetHandler implements ICommandHandler<CreateBudgetCommand, CreateBudgetOutput> {
     private final IBudgetsRepository budgetsRepository;
+    private final IUsersRepository usersRepository;
 
-    public CreateBudgetHandler(IBudgetsRepository budgetsRepository) {
+    public CreateBudgetHandler(IBudgetsRepository budgetsRepository, IUsersRepository usersRepository) {
         this.budgetsRepository = budgetsRepository;
+        this.usersRepository = usersRepository;
     }
 
     @Override
@@ -22,6 +26,8 @@ public class CreateBudgetHandler implements ICommandHandler<CreateBudgetCommand,
         dbBudgets.setBudget(monthBudget.getBudget());
         dbBudgets.setMonth(getMonthNumber(monthBudget.getMonth()));
         dbBudgets.setYear(monthBudget.getYear());
+        dbBudgets.setUser(usersRepository.findById(1L).orElse(new DbUsers()));
+        System.out.println("Users : "+dbBudgets.getUser());
 
         System.out.println("DbBudgets avant save: " + dbBudgets);
 

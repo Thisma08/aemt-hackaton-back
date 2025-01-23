@@ -13,7 +13,7 @@ import lombok.*;
 @Table(name = "budgets")
 @Data
 @NoArgsConstructor
-@ToString(exclude = "purchases")
+@ToString(exclude = {"user", "purchases"})
 public class DbBudgets {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,6 +21,10 @@ public class DbBudgets {
     private float budget;
     private int month;
     private int year;
+
+    @ManyToOne
+    @JoinColumn(name = "userid", referencedColumnName = "id")
+    private DbUsers user;
 
     @OneToMany(mappedBy = "budget", fetch = FetchType.LAZY)
     private List<DbPurchases> purchases = new ArrayList<>();
