@@ -17,7 +17,7 @@ import school.be.hackaton_christmas_wallet.services.UserService;
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
-public class SecurityAdapter {
+public class SecurityAdapter  {
     private static final String[] WHITE_LIST_URL = {
             "swagger-ui/**",
             "v3/**",
@@ -46,7 +46,7 @@ public class SecurityAdapter {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(WHITE_LIST_URL).permitAll()
-                        .anyRequest().authenticated()
+                        .anyRequest().anonymous()
                 )
                 .sessionManagement(session -> session
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
